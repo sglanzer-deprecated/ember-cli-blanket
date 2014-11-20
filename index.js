@@ -10,7 +10,7 @@ module.exports = {
 
     if (app.tests) {
       var fileAssets = [
-        'node_modules/ember-cli-blanket/node_modules/blanket/dist/qunit/blanket.js'
+        'bower_components/blanket/dist/qunit/blanket.js'
       ];
 
       fileAssets.forEach(function(file){

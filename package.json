@@ -16,9 +16,6 @@
   "ember-addon": {
     "after": "ember-cli-qunit"
   },
-  "dependencies": {
-    "blanket": "~1.1.5"
-  },
   "author": "Steven Glanzer <sglanzer@gmail.com>",
   "license": "MIT",
   "bugs": {
