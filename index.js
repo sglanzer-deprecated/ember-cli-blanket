@@ -10,7 +10,7 @@ module.exports = {
 
     if (app.tests) {
       var fileAssets = [
-        'bower_components/blanket/dist/qunit/blanket.js'
+        path.join(app.bowerDirectory, 'blanket' ,'dist', 'qunit', 'blanket.js')
       ];
 
       fileAssets.forEach(function(file){
