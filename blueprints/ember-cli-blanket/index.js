@@ -16,11 +16,12 @@ module.exports = {
                 return this.insertIntoFile(
                     'tests/index.html',
 
-                    '<script>' + EOL +
-                    '   blanket.options({' + EOL +
-                    '       antifilter: "-test.js"' + EOL +
-                    '   });' + EOL +
-                    '</script>' + EOL,
+                    '   <script>' + EOL +
+                    '       blanket.options({' + EOL +
+                    '           filter: "' + this.project.config().modulePrefix + '"' + EOL +
+                    '           antifilter: "-test.js"' + EOL +
+                    '       });' + EOL +
+                    '   </script>',
 
                     { after: '<script src="assets/test-support.js"></script>' + EOL }
                 );
@@ -30,9 +31,9 @@ module.exports = {
                 return this.insertIntoFile(
                     'tests/index.html',
 
-                        '<script>' + EOL +
-                        '   QUnit.start();' + EOL +
-                        '</script>' + EOL,
+                        '   <script>' + EOL +
+                        '       QUnit.start();' + EOL +
+                        '   </script>',
 
                     { after: '<script src="assets/test-loader.js"></script>' + EOL }
                 );
