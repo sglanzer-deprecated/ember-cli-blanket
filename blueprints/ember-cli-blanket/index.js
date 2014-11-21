@@ -18,7 +18,7 @@ module.exports = {
 
                     '   <script>' + EOL +
                     '       blanket.options({' + EOL +
-                    '           filter: "' + this.project.config().modulePrefix + '"' + EOL +
+                    '           filter: "' + this.project.config().modulePrefix + '",' + EOL +
                     '           antifilter: "-test.js"' + EOL +
                     '       });' + EOL +
                     '   </script>',
