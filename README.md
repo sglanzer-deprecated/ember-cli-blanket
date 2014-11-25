@@ -11,9 +11,9 @@ Blanket code coverage for ember-cli applications
 
 ## Usage
 
-  Run "ember test -server" to execute unit tests.
-
-  Test coverage results will appear in the browser (no Phantom currently) when the "Enable coverage" checkbox is selected.
+  Run "ember server", navigate to the application url /tests (e.g. localhost:4200/tests) and select the "Enable coverage" checkbox.
+  
+  Note that until some issues are fixed the coverage will only apply to non-route elements with "route" in the name (e.g. ember generate controller myroute).  If you want other coverage, play with the blanket-options "filter" property.
 
 ## License
 
