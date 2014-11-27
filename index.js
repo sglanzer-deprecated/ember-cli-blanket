@@ -6,34 +6,12 @@ var replace = require('broccoli-replace');
 module.exports = {
     name: 'Ember CLI Blanket',
 
-    treeForVendor: function (tree) {
-        var lib = this.treeGenerator(path.join(__dirname, 'lib'));
-        var blanketOptions = this.pickFiles(lib, {
-            files: ['blanket-options.js'],
-            srcDir: '/',
-            destDir: '/'
-        });
-
-        var blanketOptionsTree = replace(blanketOptions, {
-            files: ['blanket-options.js'],
-            patterns: [
-                {
-                    match: 'APP_NAME',
-                    replacement: this.app.name
-                }
-            ]
-        });
-
-        return this.mergeTrees([tree, blanketOptionsTree].filter(Boolean));
-    },
-
     included: function included(app) {
         this._super.included(app);
 
         if (app.tests) {
             var fileAssets = [
-                path.join(app.bowerDirectory, 'blanket' ,'dist', 'qunit', 'blanket.js'),
-                'vendor/blanket-options.js'
+                path.join(app.bowerDirectory, 'blanket' ,'dist', 'qunit', 'blanket.js')
             ];
 
             fileAssets.forEach(function(file){
@@ -52,6 +30,14 @@ module.exports = {
             files: ['test-loader.js'],
             srcDir: 'assets',
             destDir: 'app'
+        });
+
+        var tests = this.treeGenerator(path.join(this.project.root,  'tests'));
+
+        var blanketOptions = this.pickFiles(tests, {
+            files: ['blanket-options.js'],
+            srcDir: '/',
+            destDir: '/assets'
         });
 
         var lib = this.treeGenerator(path.join(__dirname, 'lib'));
@@ -73,7 +59,7 @@ module.exports = {
             outputFile: '/assets/test-loader.js'
         });
 
-        return this.mergeTrees([tree, blanketLoader, testLoaderTree], {
+        return this.mergeTrees([tree, blanketOptions, blanketLoader, testLoaderTree], {
             overwrite: true
         });
     }
