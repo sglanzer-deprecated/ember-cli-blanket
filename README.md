@@ -1,7 +1,7 @@
 Ember-cli-blanket
 =========
 
-Blanket code coverage for ember-cli applications
+[Blanket](http://blanketjs.org/) based code coverage for ember-cli applications
 
 ## Installation
 
