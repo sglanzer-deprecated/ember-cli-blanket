@@ -26,41 +26,46 @@ module.exports = {
     postprocessTree: function(type, tree) {
         this._requireBuildPackages();
 
-        var treeTestLoader = this.pickFiles(tree, {
-            files: ['test-loader.js'],
-            srcDir: 'assets',
-            destDir: 'app'
-        });
+        if (this.app.tests) {
+            var treeTestLoader = this.pickFiles(tree, {
+                files: ['test-loader.js'],
+                srcDir: 'assets',
+                destDir: 'app'
+            });
 
-        var tests = this.treeGenerator(path.join(this.project.root,  'tests'));
+            var tests = this.treeGenerator(path.join(this.project.root,  'tests'));
 
-        var blanketOptions = this.pickFiles(tests, {
-            files: ['blanket-options.js'],
-            srcDir: '/',
-            destDir: '/assets'
-        });
+            var blanketOptions = this.pickFiles(tests, {
+                files: ['blanket-options.js'],
+                srcDir: '/',
+                destDir: '/assets'
+            });
 
-        var lib = this.treeGenerator(path.join(__dirname, 'lib'));
+            var lib = this.treeGenerator(path.join(__dirname, 'lib'));
 
-        var blanketLoader = this.pickFiles(lib, {
-            files: ['blanket-loader.js'],
-            srcDir: '/',
-            destDir: '/assets'
-        });
+            var blanketLoader = this.pickFiles(lib, {
+                files: ['blanket-loader.js'],
+                srcDir: '/',
+                destDir: '/assets'
+            });
 
-        var qunitStart = this.pickFiles(lib, {
-            files: ['qunit-start.js'],
-            srcDir: '/',
-            destDir: '/'
-        });
+            var qunitStart = this.pickFiles(lib, {
+                files: ['qunit-start.js'],
+                srcDir: '/',
+                destDir: '/'
+            });
 
-        var testLoaderTree = this.concatFiles(this.mergeTrees([treeTestLoader, qunitStart]), {
-            inputFiles: ['**/*.js'],
-            outputFile: '/assets/test-loader.js'
-        });
+            var testLoaderTree = this.concatFiles(this.mergeTrees([treeTestLoader, qunitStart]), {
+                inputFiles: ['**/*.js'],
+                outputFile: '/assets/test-loader.js'
+            });
 
-        return this.mergeTrees([tree, blanketOptions, blanketLoader, testLoaderTree], {
-            overwrite: true
-        });
+            return this.mergeTrees([tree, blanketOptions, blanketLoader, testLoaderTree], {
+                overwrite: true
+            });
+        }
+        else {
+            return tree;
+        }
     }
 };
