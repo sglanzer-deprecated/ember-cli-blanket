@@ -26,7 +26,7 @@ module.exports = {
     postprocessTree: function(type, tree) {
         this._requireBuildPackages();
 
-        if (this.app.tests) {
+        if (type === 'all' && this.app.tests) {
             var treeTestLoader = this.pickFiles(tree, {
                 files: ['test-loader.js'],
                 srcDir: 'assets',
