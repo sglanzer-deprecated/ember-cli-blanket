@@ -36,12 +36,20 @@ module.exports = {
                     'tests/blanket-options.js',
                         '/* globals blanket */' + EOL + EOL +
                         'blanket.options({' + EOL +
+                        '   modulePrefix: "' + this.project.config().modulePrefix + '",' + EOL +
                         '   filter: "//.*' + this.project.config().modulePrefix + '\/.*/",' + EOL +
                         '   antifilter: "//.*(tests).*/",' + EOL +
                         '   loaderExclusions: []' + EOL +
                         '});'
                 )
             }
-        }.bind(this));
+            else {
+              return this.insertIntoFile(
+                'tests/blanket-options.js',
+                '   modulePrefix: "' + this.project.config().modulePrefix + '",',
+                { after: 'blanket.options({' + EOL }
+              );
+            }
+      }.bind(this));
   }
 };
