@@ -22,9 +22,14 @@ MIT
 
 ## Release History
 
+* 0.2.3
+
+Resolving a release version collision with the npm published version
+
 * 0.2.2
 
 Upgraded to ember-cli 0.1.12
+
 Removed unused dependencies installed in the standard ember-cli addon generation that were causing deprecation warnings.
 
 * 0.2.1
