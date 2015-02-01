@@ -24,7 +24,7 @@ MIT
 
 * 0.2.2
 
-- Upgraded to ember-cli 0.1.12
-- Removed unused dependencies installed in the standard ember-cli addon generation that were causing deprecation warnings.
+Upgraded to ember-cli 0.1.12
+Removed unused dependencies installed in the standard ember-cli addon generation that were causing deprecation warnings.
 
 * 0.2.1
