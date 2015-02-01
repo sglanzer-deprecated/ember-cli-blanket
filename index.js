@@ -7,6 +7,10 @@ var replace = require('broccoli-replace');
 module.exports = {
     name: 'Ember CLI Blanket',
 
+    blueprintsPath: function() {
+      return path.join(__dirname, 'blueprints');
+    },
+
     included: function included(app) {
         this._super.included(app);
 
