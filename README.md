@@ -5,6 +5,7 @@ Ember-cli-blanket
 
 ## Installation
 
+* `git clone` this repository
   npm install ember-cli-blanket --save-dev
 
   ember generate ember-cli-blanket
