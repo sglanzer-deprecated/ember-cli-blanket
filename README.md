@@ -22,6 +22,10 @@ MIT
 
 ## Release History
 
+* 0.2.4
+
+Avoid instrumentation of any modules that don't contain the project modulePrefix
+
 * 0.2.3
 
 Resolving a release version collision with the npm published version
