@@ -22,6 +22,10 @@ MIT
 
 ## Release History
 
+* 0.2.5
+
+Flagging additional keywords
+
 * 0.2.4
 
 Avoid instrumentation of any modules that don't contain the project modulePrefix
