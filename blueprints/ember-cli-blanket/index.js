@@ -28,6 +28,15 @@ module.exports = {
             );
         }.bind(this))
 
+        // modify the blanket reporter styles so it's not covered by the ember testing container
+        .then(function() {
+          return this.insertIntoFile(
+              'tests/index.html',
+              '    <style>#blanket-main { position: relative; z-index: 99999; }</style>',
+              { after: '<link rel="stylesheet" href="assets/test-support.css">' + EOL }
+          );
+        }.bind(this))
+
         .then(function() {
             var fullPath = path.join(this.project.root, 'tests/blanket-options.js');
 
