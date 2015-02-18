@@ -54,13 +54,13 @@ module.exports = {
                 destDir: '/assets'
             });
 
-            var start = this.pickFiles(lib, {
-                files: ['start.js'],
+            var qunitStart = this.pickFiles(lib, {
+                files: ['qunit-start.js'],
                 srcDir: '/',
                 destDir: '/'
             });
 
-            var testLoaderTree = this.concatFiles(this.mergeTrees([treeTestLoader, start]), {
+            var testLoaderTree = this.concatFiles(this.mergeTrees([treeTestLoader, qunitStart]), {
                 inputFiles: ['**/*.js'],
                 outputFile: '/assets/test-loader.js'
             });

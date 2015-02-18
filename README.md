@@ -24,12 +24,6 @@ MIT
 
 ## Release History
 
-* 0.3.0
-
-Newer versions of ember-cli (tested against 0.1.15), which include newer versions of qunit,
-call QUnit.start() and conflict with the QUnit.start() called in the ember-cli-blanket start.js,
-so the QUnit.start() in start.js has been removed.
-
 * 0.2.6
 
 Added ember-cli-mocha support - thanks to Matt Heisig
