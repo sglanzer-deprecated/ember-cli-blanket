@@ -5,14 +5,9 @@ Ember-cli-blanket
 
 ## Installation
 
-Install the npm package:
+Install the addon:
 ```sh
-npm install ember-cli-blanket --save-dev
-```
-Then run the ember-cli-blanket generater:
-
-```sh
-ember generate ember-cli-blanket
+ember install:addon ember-cli-blanket
 ```
 
 ## Usage
