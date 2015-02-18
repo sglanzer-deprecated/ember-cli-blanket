@@ -32,6 +32,7 @@ MIT
 * 0.2.6
 
 Added ember-cli-mocha support - thanks to Matt Heisig
+
 Fixed the blanket report being hidden behind the ember test container - thanks to Steve Axthelm
 
 * 0.2.5
