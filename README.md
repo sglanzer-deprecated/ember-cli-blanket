@@ -24,6 +24,10 @@ MIT
 
 ## Release History
 
+* 0.2.7
+
+Fixing an issue with asset management related to the rename of qunit-start.js to start.js
+
 * 0.2.6
 
 Added ember-cli-mocha support - thanks to Matt Heisig
