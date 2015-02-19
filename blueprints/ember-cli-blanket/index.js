@@ -47,7 +47,7 @@ module.exports = {
                         'blanket.options({' + EOL +
                         '   modulePrefix: "' + this.project.config().modulePrefix + '",' + EOL +
                         '   filter: "//.*' + this.project.config().modulePrefix + '\/.*/",' + EOL +
-                        '   antifilter: "//.*(tests|templates).*/",' + EOL +
+                        '   antifilter: "//.*(tests|template).*/",' + EOL +
                         '   loaderExclusions: []' + EOL +
                         '});'
                 )
