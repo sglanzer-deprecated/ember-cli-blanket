@@ -48,7 +48,8 @@ module.exports = {
                         '   modulePrefix: "' + this.project.config().modulePrefix + '",' + EOL +
                         '   filter: "//.*' + this.project.config().modulePrefix + '\/.*/",' + EOL +
                         '   antifilter: "//.*(tests|template).*/",' + EOL +
-                        '   loaderExclusions: []' + EOL +
+                        '   loaderExclusions: [],' + EOL +
+                        '   enableCoverage: true' + EOL + 
                         '});'
                 )
             }
