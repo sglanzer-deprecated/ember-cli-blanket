@@ -14,7 +14,7 @@ ember install:addon ember-cli-blanket
 
 Run `ember server`, navigate to the application url [/tests](http://localhost:4200/tests) (e.g. localhost:4200/tests) and select the "Enable coverage" checkbox.
 
-A options file is available in tests/blanket-options.js that contains the current regex for data coverage (filter) the regex for exclusion from data coverage (antifilter) and an array of string to exclude from blanket's requirejs loader (loaderExclusions).  
+A options file is available in tests/blanket-options.js that contains the current regex for data coverage (filter) the regex for exclusion from data coverage (antifilter) and an array of string to exclude from blanket's requirejs loader (loaderExclusions).
 
 As of release 0.2.4 loader exclusions are no longer necessary to fix conflicts with addon modules.  Loader exclusions may still be used to remove data coverage for specific files (e.g. config/environment).
 
@@ -23,6 +23,15 @@ As of release 0.2.4 loader exclusions are no longer necessary to fix conflicts w
 MIT
 
 ## Release History
+
+* 0.3.1
+
+New installations will exclude templates from coverage by default.  If you wish to include templates in your coverage reports, modify tests/blanket-options.js to remove 'template' from the antifilter.
+
+If you have an existing installation and wish to remove templates from coverage, modify your blanket-options.js to add 'template' to the antifilter, e.g.:
+````
+antifilter: ["//.*(tests|template).*/"]
+````
 
 * 0.3.0
 
