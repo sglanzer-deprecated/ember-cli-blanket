@@ -24,6 +24,14 @@ MIT
 
 ## Release History
 
+* 0.3.2
+ 
+Thanks to Jeff Schilling code coverage can be enabled/disabled in tests/blanket-options.js via the enableCoverage property.  This allows instrumentation to be turned off so that code debugging line numbers will line up.
+
+For QUnit testing, turning off the 'Enable Coverage' flag in the HTML report will disable instrumentation.
+
+For Mocha testing, appending ?coverage in the HTML report url will enable coverage, absence of this query parameter will disable coverage.
+
 * 0.3.1
 
 New installations will exclude templates from coverage by default.  If you wish to include templates in your coverage reports, modify tests/blanket-options.js to remove 'template' from the antifilter.
