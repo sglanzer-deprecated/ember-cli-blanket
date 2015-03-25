@@ -24,6 +24,10 @@ MIT
 
 ## Release History
 
+* 0.3.3
+
+Thanks again to Jeff Schilling, modules off the standard ember-cli require paths are now included in the coverage if the modules are included as imports.  For example, this means that modules with utility functions will now be included in the coverage.
+
 * 0.3.2
  
 Thanks to Jeff Schilling code coverage can be enabled/disabled in tests/blanket-options.js via the enableCoverage property.  This allows instrumentation to be turned off so that code debugging line numbers will line up.
