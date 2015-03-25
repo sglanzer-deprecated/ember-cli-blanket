@@ -26,7 +26,7 @@ MIT
 
 * 0.3.3
 
-Thanks again to Jeff Schilling, modules off the standard ember-cli require paths are now included in the coverage if the modules are included as imports.  For example, this means that modules with utility functions will now be included in the coverage.
+Thanks again to Jeff Schilling, modules off the standard ember-cli require paths are now included in the coverage if the modules are included as imports.  For example, this means that utility function modules will now be included in the coverage.
 
 * 0.3.2
  
