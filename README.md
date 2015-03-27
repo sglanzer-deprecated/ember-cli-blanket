@@ -24,6 +24,10 @@ MIT
 
 ## Release History
 
+* 0.3.4
+
+Once again, Jeff Schilling keeps the project moving, this time annotating files that weren't instrumented in the extended requirejs loading.
+
 * 0.3.3
 
 Thanks again to Jeff Schilling, modules off the standard ember-cli require paths are now included in the coverage if the modules are included as imports.  For example, this means that utility function modules will now be included in the coverage.
