@@ -24,6 +24,10 @@ MIT
 
 ## Release History
 
+* 0.4.0
+
+Upgraded to ember-cli 0.2.2 @jschilli
+
 * 0.3.4
 
 Once again, Jeff Schilling keeps the project moving, this time annotating files that weren't instrumented in the extended requirejs loading.
