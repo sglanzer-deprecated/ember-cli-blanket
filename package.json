@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-blanket",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Blanket code coverage for ember-cli",
   "main": "index.js",
   "directories": {
