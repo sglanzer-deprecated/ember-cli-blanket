@@ -1,8 +1,6 @@
 /* globals module */
 
 var EOL = require('os').EOL;
-var fs = require('fs');
-var path = require('path');
 
 module.exports = {
   normalizeEntityName: function() {},
@@ -35,31 +33,6 @@ module.exports = {
               '    <style>#blanket-main { position: relative; z-index: 99999; }</style>',
               { after: '<link rel="stylesheet" href="assets/test-support.css">' + EOL }
           );
-        }.bind(this))
-
-        .then(function() {
-            var fullPath = path.join(this.project.root, 'tests/blanket-options.js');
-
-            if (!fs.existsSync(fullPath)) {
-                return this.insertIntoFile(
-                    'tests/blanket-options.js',
-                        '/* globals blanket */' + EOL + EOL +
-                        'blanket.options({' + EOL +
-                        '   modulePrefix: "' + this.project.config().modulePrefix + '",' + EOL +
-                        '   filter: "//.*' + this.project.config().modulePrefix + '\/.*/",' + EOL +
-                        '   antifilter: "//.*(tests|template).*/",' + EOL +
-                        '   loaderExclusions: [],' + EOL +
-                        '   enableCoverage: true' + EOL + 
-                        '});'
-                )
-            }
-            else {
-              return this.insertIntoFile(
-                'tests/blanket-options.js',
-                '   modulePrefix: "' + this.project.config().modulePrefix + '",',
-                { after: 'blanket.options({' + EOL }
-              );
-            }
-      }.bind(this));
+        }.bind(this));
   }
 };
