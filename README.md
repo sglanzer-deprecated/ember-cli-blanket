@@ -58,6 +58,10 @@ MIT
 
 ## Release History
 
+* 0.5.0
+
+Thanks to monumental effort from @jschilli the project now supports reporters and headless test runs.  Additionally, unit tests are now in place with continuous integration and the code base is much cleaner.  Amazing work Jeff!
+
 * 0.4.0
 
 Upgraded to ember-cli 0.2.2 @jschilli
