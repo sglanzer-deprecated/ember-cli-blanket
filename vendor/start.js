@@ -1,3 +1,26 @@
+/*global blanket, mocha, moduleLoaderFinish, $ */
+
+function sendCoverage() {
+	$.ajax({
+		type: 'POST',
+		url:'/write-blanket-coverage',
+		datatype: 'json',
+		contentType:'application/json; charset=utf-8',
+		data: JSON.stringify(window._$blanket_coverageData)
+	  });
+}
+
+var origBlanketOnTestsDone = blanket.onTestsDone;
+
+function cliFinish() {
+  // annotate all files that match but were never referenced
+	moduleLoaderFinish();
+	origBlanketOnTestsDone.apply(blanket);
+	sendCoverage();
+}
+
+blanket.onTestsDone = cliFinish;
+
 if (typeof(QUnit) === 'object') {
     // I'm not sure which ember-cli release introduced this behavior,
     // but QUnit.start() is called by the ember-cli framework as of
@@ -24,7 +47,7 @@ else if (typeof(mocha) === 'object') {
     (function() {
 
         if(!mocha) {
-            throw new Exception("mocha library does not exist in global namespace!");
+            throw new Error("mocha library does not exist in global namespace!");
         }
 
 
@@ -48,15 +71,12 @@ else if (typeof(mocha) === 'object') {
 
         var blanketReporter = function(runner) {
                 runner.on('start', function() {
-                    blanket.setupCoverage();
+                  blanket.setupCoverage();
                 });
 
                 runner.on('end', function() {
-                  // annotate all files that match but were never referenced
-                  moduleLoaderFinish();
                   blanket.onTestsDone();
                 });
-
                 runner.on('suite', function() {
                     blanket.onModuleStart();
                 });
@@ -74,6 +94,7 @@ else if (typeof(mocha) === 'object') {
 
                 originalReporter.apply(this, [runner]);
             };
+
 
         // From mocha.js HTML reporter
         blanketReporter.prototype.suiteURL = function(suite){

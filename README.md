@@ -10,6 +10,40 @@ Install the addon:
 ember install:addon ember-cli-blanket
 ```
 
+## Reporters
+
+ember-cli-blanket can output coverage data to a file.
+
+Two reporters are currently supported:
+
+- json - provides summary and file level statistics 
+- lcov - provides a basic lcov formatted file
+
+Reporters have default output destinations and this can be overwritten in the `blanket-options.js` file.
+
+```js
+var options = {
+...
+    cliOptions: {
+      jsonOptions: {
+        outputFile: 'test-output.json' // default is 'coverage.json'
+      },
+      lcovOptions: {
+        outputFile: 'lcov.dat'
+      },
+      reporters: ['json']
+    }
+  };
+```
+
+Only a single reporter is supported currently.
+
+### Limitations of reporters
+
+It should be noted that given the multitude of transformations that the javascript under test goes through that the output of the `lcov` reporter in particular will not match line for line the original input source.
+
+In fact, there is current no direct mapping between the `es6` module names in the lcov output and the original input files.
+
 ## Usage
 
 Run `ember server`, navigate to the application url [/tests](http://localhost:4200/tests) (e.g. localhost:4200/tests) and select the "Enable coverage" checkbox.

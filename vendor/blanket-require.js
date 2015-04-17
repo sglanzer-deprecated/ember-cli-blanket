@@ -1,4 +1,4 @@
-/* globals blanket, requirejs, require:true */
+/* globals QUnit, blanket, requirejs, require:true, moduleLoaderFinish:true */
 
 // This could be a documented capability and move it out of blanket-loader
 // it works, can't put it in test-helper b/c it loads too late
@@ -76,6 +76,8 @@ if (blanket.options('enableCoverage')) {
         }
         return savedRequire(name);
     };
+    blanket.options('reporter', blanket.customReporter);
+
 }
 
 /*

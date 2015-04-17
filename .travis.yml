@@ -1,5 +1,9 @@
 ---
 language: node_js
+node_js:
+  - "0.12"
+  - "0.10"
+  - "iojs"
 
 sudo: false
 
@@ -10,6 +14,7 @@ cache:
 before_install:
   - "npm config set spin false"
   - "npm install -g npm@^2"
+  - "npm install -g jshint@^2.5"
 
 install:
   - npm install -g bower
@@ -17,4 +22,12 @@ install:
   - bower install
 
 script:
+  - jshint .
   - npm test
+
+notifications:
+    email: false
+matrix:
+    fast_finish: true
+    allow_failures:
+        - node_js: "iojs"

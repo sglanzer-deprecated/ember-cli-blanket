@@ -1,0 +1,87 @@
+{
+  "fileData": [{
+    "fileName": "todomvc-ember-cli/app",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 1, null, null, null, null, null, 1, null, 1],
+    "source": ["define(\"todomvc-ember-cli/app\", ", "  [\"exports\", \"ember\", \"ember/resolver\", \"ember/load-initializers\", \"todomvc-ember-cli/config/environment\"], ", "function (exports, Ember, Resolver, loadInitializers, config) {", "", "  'use strict';", "", "  Ember['default'].MODEL_FACTORY_INJECTIONS = true;", "", "  var App = Ember['default'].Application.extend({", "    modulePrefix: config['default'].modulePrefix,", "    podModulePrefix: config['default'].podModulePrefix,", "    Resolver: Resolver['default']", "  });", "", "  loadInitializers['default'](App, config['default'].modulePrefix);", "", "  exports['default'] = App;", "", "});//# sourceURL=todomvc-ember-cli/app.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/config/environment",
+    "lines": [null, 1, null, null, 0, null, null, 0, 0, 0, 0, null, 0, null, null, 0],
+    "source": ["define(\"todomvc-ember-cli/config/environment\", ", "  [\"ember\"], ", "function (Ember) {", "  var prefix = 'todomvc-ember-cli';", "/* jshint ignore:start */", "", "try {", "  var metaName = prefix + '/config/environment';", "  var rawConfig = Ember['default'].$('meta[name=\"' + metaName + '\"]').attr('content');", "  var config = JSON.parse(unescape(rawConfig));", "", "  return { 'default': config };", "}", "catch(err) {", "  throw new Error('Could not read config from meta tag with name \"' + metaName + '\".');", "}", "", "/* jshint ignore:end */;", "", "});//# sourceURL=todomvc-ember-cli/config/environment.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/initializers/app-version",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 1, null, null, 8, 8],
+    "source": ["define(\"todomvc-ember-cli/initializers/app-version\", ", "  [\"exports\", \"todomvc-ember-cli/config/environment\", \"ember\"], ", "function (exports, config, Ember) {", "", "  'use strict';", "", "  var classify = Ember['default'].String.classify;", "", "  exports['default'] = {", "    name: \"App Version\",", "    initialize: function initialize(container, application) {", "      var appName = classify(application.toString());", "      Ember['default'].libraries.register(appName, config['default'].APP.version);", "    }", "  };", "", "});//# sourceURL=todomvc-ember-cli/initializers/app-version.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/initializers/export-application-global",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 1, 8, null, 8, 1, null, null, null, null, null, 1],
+    "source": ["define(\"todomvc-ember-cli/initializers/export-application-global\", ", "  [\"exports\", \"ember\", \"todomvc-ember-cli/config/environment\"], ", "function (exports, Ember, config) {", "", "  'use strict';", "", "  exports.initialize = initialize;", "", "  function initialize(container, application) {", "    var classifiedName = Ember['default'].String.classify(config['default'].modulePrefix);", "", "    if (config['default'].exportApplicationGlobal && !window[classifiedName]) {", "      window[classifiedName] = application;", "    }", "  }", "", "  ;", "", "  exports['default'] = {", "    name: \"export-application-global\",", "", "    initialize: initialize", "  };", "", "});//# sourceURL=todomvc-ember-cli/initializers/export-application-global.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/router",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, null, null, 1, 1, 1, 1, null, null, null, 1],
+    "source": ["define(\"todomvc-ember-cli/router\", ", "  [\"exports\", \"ember\", \"todomvc-ember-cli/config/environment\"], ", "function (exports, Ember, config) {", "", "  'use strict';", "", "  var Router = Ember['default'].Router.extend({", "    location: config['default'].locationType", "  });", "", "  Router.map(function () {", "    this.resource(\"todos\", { path: \"/\" }, function () {", "      this.route(\"active\");", "      this.route(\"completed\");", "    });", "  });", "", "  exports['default'] = Router;", "", "});//# sourceURL=todomvc-ember-cli/router.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/models/todo",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, null, null, null, 1],
+    "source": ["define(\"todomvc-ember-cli/models/todo\", ", "  [\"exports\", \"ember-data\"], ", "function (exports, DS) {", "", "  'use strict';", "", "  var Todo = DS['default'].Model.extend({", "    title: DS['default'].attr(\"string\"),", "    isCompleted: DS['default'].attr(\"boolean\")", "  });", "", "  exports['default'] = Todo;", "", "});//# sourceURL=todomvc-ember-cli/models/todo.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/controllers/todo",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, null, 3, null, null, 2, null, 2, 1, null, 1, null, null, null, 3, 3, 3, null, null, null, null, null, null, 14, 14, null, 14, null, 14, null, null, 0, 0, 0],
+    "source": ["define(\"todomvc-ember-cli/controllers/todo\", ", "  [\"exports\", \"ember\", \"todomvc-ember-cli/utils/util\"], ", "function (exports, Ember, util) {", "", "  'use strict';", "", "  exports['default'] = Ember['default'].ObjectController.extend({", "    actions: {", "      editTodo: function editTodo() {", "        this.set(\"isEditing\", true);", "      },", "      acceptChanges: function acceptChanges() {", "        this.set(\"isEditing\", false);", "", "        if (Ember['default'].isEmpty(this.get(\"model.title\"))) {", "          this.send(\"removeTodo\");", "        } else {", "          this.get(\"model\").save();", "        }", "      },", "      removeTodo: function removeTodo() {", "        var todo = this.get(\"model\");", "        todo.deleteRecord();", "        todo.save();", "      }", "    },", "", "    isEditing: false,", "", "    isCompleted: (function (key, value) {", "      var model = this.get(\"model\");", "      util.foobar(\"bletch\");", "", "      if (value === undefined) {", "        // property being used as a getter", "        return model.get(\"isCompleted\");", "      } else {", "        // property being used as a setter", "        model.set(\"isCompleted\", value);", "        model.save();", "        return value;", "      }", "    }).property(\"model.isCompleted\")", "  });", "", "});//# sourceURL=todomvc-ember-cli/controllers/todo.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/utils/util",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 2, null, 14, 14, null, null, null, 1],
+    "source": ["define(\"todomvc-ember-cli/utils/util\", ", "  [\"exports\", \"ember\"], ", "function (exports, Em) {", "", "\t'use strict';", "", "\texports.foobar = foobar;", "", "\tvar fooness = {};function foobar(test) {", "\t\t// this.set('isEditing', false);", "\t\tif (test = \"bletch\") {", "\t\t\tconsole.log(\"bletcherific\");", "\t\t}", "\t}", "", "\texports.fooness = fooness;", "", "});//# sourceURL=todomvc-ember-cli/utils/util.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/controllers/todos",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, null, null, 1, 1, 0, null, null, null, 1, null, null, null, null, null, 1, null, null, 1, null, null, null, 0, 0, 0, null, null, null, null, 9, null, null, null, 7, 7, null, null, null, 7, null, null, null, 9, null, null, null, 9, 9, null, 0, 0, 0],
+    "source": ["define(\"todomvc-ember-cli/controllers/todos\", ", "  [\"exports\", \"ember\"], ", "function (exports, Ember) {", "", "  'use strict';", "", "  exports['default'] = Ember['default'].ArrayController.extend({", "    actions: {", "      createTodo: function createTodo() {", "        // Get the todo title set by the \"New Todo\" text field", "        var title = this.get(\"newTitle\");", "        if (!title.trim()) {", "          return;", "        }", "", "        // Create the new Todo Model", "        var todo = this.store.createRecord(\"todo\", {", "          title: title,", "          isCompleted: false", "        });", "", "        // Clear the \"New Todo\" text field", "        this.set(\"newTitle\", \"\");", "", "        // Save the new model", "        todo.save();", "      },", "", "      clearCompleted: function clearCompleted() {", "        var completed = this.filterBy(\"isCompleted\", true);", "        completed.invoke(\"deleteRecord\");", "        completed.invoke(\"save\");", "      }", "    },", "", "    remaining: (function () {", "      return this.filterBy(\"isCompleted\", false).get(\"length\");", "    }).property(\"@each.isCompleted\"),", "", "    inflection: (function () {", "      var remaining = this.get(\"remaining\");", "      return remaining === 1 ? \"todo\" : \"todos\";", "    }).property(\"remaining\"),", "", "    hasCompleted: (function () {", "      return this.get(\"completed\") > 0;", "    }).property(\"completed\"),", "", "    completed: (function () {", "      return this.filterBy(\"isCompleted\", true).get(\"length\");", "    }).property(\"@each.isCompleted\"),", "", "    allAreDone: (function (key, value) {", "      if (value === undefined) {", "        return !!this.get(\"length\") && this.everyProperty(\"isCompleted\", true);", "      } else {", "        this.setEach(\"isCompleted\", value);", "        this.invoke(\"save\");", "        return value;", "      }", "    }).property(\"@each.isCompleted\")", "", "  });", "", "});//# sourceURL=todomvc-ember-cli/controllers/todos.js"],
+    "branchData": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, [null, null, null, null, null, null, null, null, null, null, null, null, null, [
+      [true, true, true, true, true],
+      [false, false]
+    ]]]
+  }, {
+    "fileName": "todomvc-ember-cli/routes/todos",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 4],
+    "source": ["define(\"todomvc-ember-cli/routes/todos\", ", "  [\"exports\", \"ember\"], ", "function (exports, Ember) {", "", "  'use strict';", "", "  exports['default'] = Ember['default'].Route.extend({", "    model: function model() {", "      return this.store.find(\"todo\");", "    }", "  });", "", "});//# sourceURL=todomvc-ember-cli/routes/todos.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/routes/todos/active",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 0, 0, null, null, null, 0],
+    "source": ["define(\"todomvc-ember-cli/routes/todos/active\", ", "  [\"exports\", \"ember\"], ", "function (exports, Ember) {", "", "  'use strict';", "", "  exports['default'] = Ember['default'].Route.extend({", "    model: function model() {", "      return this.store.filter(\"todo\", function (todo) {", "        return !todo.get(\"isCompleted\");", "      });", "    },", "    renderTemplate: function renderTemplate(controller) {", "      this.render(\"todos/index\", { controller: controller });", "    }", "  });", "", "});//# sourceURL=todomvc-ember-cli/routes/todos/active.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/routes/todos/completed",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 0, 0, null, null, null, 0],
+    "source": ["define(\"todomvc-ember-cli/routes/todos/completed\", ", "  [\"exports\", \"ember\"], ", "function (exports, Ember) {", "", "  'use strict';", "", "  exports['default'] = Ember['default'].Route.extend({", "    model: function model() {", "      return this.store.filter(\"todo\", function (todo) {", "        return todo.get(\"isCompleted\");", "      });", "    },", "    renderTemplate: function renderTemplate(controller) {", "      this.render(\"todos/index\", { controller: controller });", "    }", "  });", "", "});//# sourceURL=todomvc-ember-cli/routes/todos/completed.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/routes/todos/index",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, 4],
+    "source": ["define(\"todomvc-ember-cli/routes/todos/index\", ", "  [\"exports\", \"ember\"], ", "function (exports, Ember) {", "", "  'use strict';", "", "  exports['default'] = Ember['default'].Route.extend({", "    model: function model() {", "      return this.modelFor(\"todos\");", "    }", "  });", "", "});//# sourceURL=todomvc-ember-cli/routes/todos/index.js"],
+    "branchData": []
+  }, {
+    "fileName": "todomvc-ember-cli/adapters/application",
+    "lines": [null, 1, null, null, null, 1, null, 1, null, null, null, 1],
+    "source": ["define(\"todomvc-ember-cli/adapters/application\", ", "  [\"exports\", \"ember\", \"ember-data\"], ", "function (exports, Ember, DS) {", "", "  'use strict';", "", "  var adapter = Ember['default'].testing ? DS['default'].FixtureAdapter : DS['default'].LSAdapter.extend({", "    namespace: \"todos-ember-es6\"", "  });", "", "  exports['default'] = adapter;", "", "});//# sourceURL=todomvc-ember-cli/adapters/application.js"],
+    "branchData": [null, null, null, null, null, null, null, [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, [
+      [true]
+    ]]]
+  }],
+  "stats": {
+    "suites": 36,
+    "tests": 47,
+    "passes": 46,
+    "pending": 0,
+    "failures": 1,
+    "start": "2015-04-03T02:30:45.108Z",
+    "end": "2015-04-03T02:30:47.246Z"
+  }
+}
