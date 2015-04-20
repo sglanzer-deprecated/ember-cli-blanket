@@ -38,6 +38,16 @@ var options = {
 
 Only a single reporter is supported currently.
 
+Append ```?coverage``` to the HTML report URL to enable coverage. This option will enable the creation of the coverage data file when running within a continuous integration context. This value can be specified within the testem.json:
+ 
+```js
+{
+...
+  'test_page': 'tests/index.html?coverage',
+...
+}
+```
+
 ### Limitations of reporters
 
 It should be noted that given the multitude of transformations that the javascript under test goes through that the output of the `lcov` reporter in particular will not match line for line the original input source.
