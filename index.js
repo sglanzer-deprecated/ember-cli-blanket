@@ -40,9 +40,6 @@ module.exports = {
 
   middleware: function(app, options) {
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({
-      extended: true
-    }));
     app.use(coverageMiddleware(options));
     app.use(logErrors);
   },
