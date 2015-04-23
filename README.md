@@ -16,10 +16,10 @@ ember-cli-blanket can output coverage data to a file.
 
 Two reporters are currently supported:
 
-- json - provides summary and file level statistics 
+- json - provides summary and file level statistics
 - lcov - provides a basic lcov formatted file
 
-Reporters have default output destinations and this can be overwritten in the `blanket-options.js` file.
+Reporters have default output destinations and this can be overwritten in the `blanket-options.js` file, which is auto-installed in your `tests` folder.
 
 ```js
 var options = {
@@ -39,7 +39,7 @@ var options = {
 Only a single reporter is supported currently.
 
 Append ```?coverage``` to the HTML report URL to enable coverage. This option will enable the creation of the coverage data file when running within a continuous integration context. This value can be specified within the testem.json:
- 
+
 ```js
 {
 ...
@@ -85,7 +85,7 @@ Once again, Jeff Schilling keeps the project moving, this time annotating files 
 Thanks again to Jeff Schilling, modules off the standard ember-cli require paths are now included in the coverage if the modules are included as imports.  For example, this means that utility function modules will now be included in the coverage.
 
 * 0.3.2
- 
+
 Thanks to Jeff Schilling code coverage can be enabled/disabled in tests/blanket-options.js via the enableCoverage property.  This allows instrumentation to be turned off so that code debugging line numbers will line up.
 
 For QUnit testing, turning off the 'Enable Coverage' flag in the HTML report will disable instrumentation.
