@@ -1,4 +1,4 @@
-/*global blanket, mocha, moduleLoaderFinish, $ */
+/*global QUnit, blanket, mocha, moduleLoaderFinish, $ */
 
 function sendCoverage() {
 	$.ajax({
