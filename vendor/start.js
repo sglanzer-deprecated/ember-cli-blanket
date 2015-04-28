@@ -1,4 +1,4 @@
-/*global blanket, mocha, moduleLoaderFinish, $ */
+/*global QUnit, blanket, mocha, moduleLoaderFinish, $ */
 
 function sendCoverage() {
 	$.ajax({
@@ -22,11 +22,7 @@ function cliFinish() {
 blanket.onTestsDone = cliFinish;
 
 if (typeof(QUnit) === 'object') {
-    // I'm not sure which ember-cli release introduced this behavior,
-    // but QUnit.start() is called by the ember-cli framework as of
-    // ember-cli@0.1.15 and causes a conflict if QUnit.start() is
-    // called again here
-    // QUnit.start();
+  QUnit.config.autostart = window._$blanket_qunit.autostart;
 }
 else if (typeof(mocha) === 'object') {
 
