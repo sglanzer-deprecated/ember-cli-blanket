@@ -1,9 +1,9 @@
-/*globals blanket, module */
+/* globals blanket, module */
 
 var options = {
-  modulePrefix: "<%= dasherizedPackageName %>",
-  filter: "//.*<%= dasherizedPackageName %>/.*/",
-  antifilter: "//.*(tests|template).*/",
+  modulePrefix: '<%= dasherizedPackageName %>',
+  filter: '//.*<%= dasherizedPackageName %>/.*/',
+  antifilter: '//.*(tests|template).*/',
   loaderExclusions: [],
   enableCoverage: true,
   cliOptions: {
