@@ -22,7 +22,7 @@ function cliFinish() {
 blanket.onTestsDone = cliFinish;
 
 if (typeof(QUnit) === 'object') {
-QUnit.config.autostart = blanket.options('autostart');
+  QUnit.config.autostart = blanket.options('cliOptions').autostart !== false;
 }
 else if (typeof(mocha) === 'object') {
 
