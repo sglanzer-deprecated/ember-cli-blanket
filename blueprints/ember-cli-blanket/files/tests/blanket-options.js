@@ -7,7 +7,8 @@ var options = {
   loaderExclusions: [],
   enableCoverage: true,
   cliOptions: {
-    reporters: ['json']
+    reporters: ['json'],
+    autostart: true
   }
 };
 if (typeof exports === 'undefined') {

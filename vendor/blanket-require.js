@@ -42,10 +42,6 @@ var blanketLoader = function(moduleName) {
 // Defer the start of the test run until a call to QUnit.start() this
 // allows the modules to be loaded/instrumented prior to the test run
 if (typeof(QUnit) === 'object') {
-    var autostart = QUnit.config.autostart;
-    window._$blanket_qunit = {
-      autostart: autostart
-    };
     QUnit.config.autostart = false;
 }
 

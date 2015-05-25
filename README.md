@@ -70,6 +70,11 @@ MIT
 
 ## Release History
 
+* 0.5.2
+
+QUnit users:
+blanket-options now includes an autostart option (default true) to control the value of QUnit.config.autostart after the code coverage instrumentation is complete
+
 * 0.5.0
 
 Thanks to monumental effort from @jschilli the project now supports reporters and headless test runs.  Additionally, unit tests are now in place with continuous integration and the code base is much cleaner.  Amazing work Jeff!
