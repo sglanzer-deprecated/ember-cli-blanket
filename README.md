@@ -31,7 +31,12 @@ var options = {
         outputFile: 'test-output.json' // default is 'coverage.json'
       },
       lcovOptions: {
-        outputFile: 'lcov.dat'
+        outputFile: 'lcov.dat',
+        //provide a function to rename es6 modules to a file path
+        renamer: function(moduleName){
+          var expression = /^APP_NAME/;
+          return moduleName.replace(expression, 'app') + '.js';
+        }
       },
       reporters: ['json']
     }
