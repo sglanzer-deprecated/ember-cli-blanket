@@ -39,9 +39,10 @@ module.exports = {
   },
 
   middleware: function(app, options) {
-    app.use(bodyParser.json());
-    app.use(coverageMiddleware(options));
-    app.use(logErrors);
+    app.post('/write-blanket-coverage',
+             bodyParser.json(),
+             coverageMiddleware(options),
+             logErrors);
   },
   testemMiddleware: function(app) {
     this.middleware(app, { root: this.project.root });
