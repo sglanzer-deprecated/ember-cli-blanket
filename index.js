@@ -47,6 +47,11 @@ module.exports = {
   testemMiddleware: function(app) {
     this.middleware(app, { root: this.project.root });
   },
+  serverMiddleware: function(options) {
+    this.app = options.app;
+    if(!this.validEnv()) { return; }
+    this.middleware(options.app, { root: this.project.root });
+  },
   postprocessTree: function(type, tree) {
     this._requireBuildPackages();
 
