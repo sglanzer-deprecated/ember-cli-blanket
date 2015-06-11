@@ -14,9 +14,11 @@ describe('LCOV Reporter', function() {
   it('should replace modules names with file names when requested', function () {
     var expectedOutput = fs.readFileSync(path.join(__dirname, '../../fixtures/lcov-output-with-renamer.dat'), 'utf8');
     var reporter = new LCOVReporter({
-      lcovOptions: {
-        renamer: function(moduleName){
-          return moduleName.replace(/^todomvc-ember-cli/, 'something-else');
+      cliOptions: {
+        lcovOptions: {
+          renamer: function (moduleName) {
+            return moduleName.replace(/^todomvc-ember-cli/, 'something-else');
+          }
         }
       }
     });
