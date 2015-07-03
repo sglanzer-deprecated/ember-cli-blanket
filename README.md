@@ -75,6 +75,10 @@ MIT
 
 ## Release History
 
+* 0.5.3
+
+Various bugfixes - thanks to everyone for keeping this project moving forward!
+
 * 0.5.2
 
 QUnit users:
