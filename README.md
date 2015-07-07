@@ -45,7 +45,15 @@ var options = {
 
 Only a single reporter is supported currently.
 
-Append ```?coverage``` to the HTML report URL to enable coverage. This option will enable the creation of the coverage data file when running within a continuous integration context. This value can be specified within the testem.json:
+Append ```?coverage``` to the HTML report URL to enable coverage. This option will enable the creation of the coverage data file when running within a continuous integration context. 
+
+You can add this as part of the ```ember test``` command for a single run:
+
+```bash
+ember test --test-page='tests/index.html?coverage'
+```
+
+or it can be specified within testem.json for use everytime you test:
 
 ```js
 {
