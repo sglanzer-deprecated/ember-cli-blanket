@@ -61,6 +61,28 @@ It should be noted that given the multitude of transformations that the javascri
 
 In fact, there is current no direct mapping between the `es6` module names in the lcov output and the original input files.
 
+### Reporters and Testing Mocks
+
+When tests are complete an HTTP POST request is sent to the ember-cli express server to initiate the report writing process.  This request may get intercepted if you are using a mocking library like ember-cli-mirage or Pretender.  You will need to configure these libraries to "passthrough" the request.  
+
+If you are using Pretender directly add
+```js
+this.post(
+  '/write-blanket-coverage',
+  this.passthrough
+);
+```
+
+For ember-cli-mirage add this to your config.js
+
+```js
+this.pretender.post.call(
+  this.pretender,
+  '/write-blanket-coverage',
+  this.pretender.passthrough
+);
+```
+
 ## Usage
 
 Run `ember server`, navigate to the application url [/tests](http://localhost:4200/tests) (e.g. localhost:4200/tests) and select the "Enable coverage" checkbox.
