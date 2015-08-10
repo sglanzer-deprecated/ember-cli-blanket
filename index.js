@@ -40,7 +40,7 @@ module.exports = {
 
   middleware: function(app, options) {
     app.post('/write-blanket-coverage',
-             bodyParser.json(),
+             bodyParser.json({ limit: '50mb' }),
              coverageMiddleware(options),
              logErrors);
   },
