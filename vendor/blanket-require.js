@@ -50,6 +50,10 @@ var shouldExclude = function(moduleName) {
       return true;
     }
 
+    if ( moduleName === blanket.options('modulePrefix') ) {
+        return true;
+    }
+
     // Loader exclusions are no longer necessary to fix conflicts with addon modules
     // but may still be used to remove data coverage for specific files (e.g. config/environment).
     var exclude = false;
