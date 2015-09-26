@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-blanket",
   "dependencies": {
-    "blanket": "~1.1.5"
+    "blanket": "~1.1.7"
   }
 }
