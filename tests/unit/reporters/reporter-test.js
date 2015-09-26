@@ -6,7 +6,6 @@ var path = require('path');
 var root = process.cwd();
 var tmp = require('tmp-sync');
 var tmproot = path.join(root, 'tmp');
-var fs = require('fs-extra');
 
 describe('Reporter', function() {
   describe('Options Handling', function() {
@@ -18,7 +17,7 @@ describe('Reporter', function() {
       var TestReporter = Reporter.extend({
         name: 'test',
         defaultOutput: 'test.txt',
-        transform: function(data) {
+        transform: function() {
           expect(this.options).to.be.ok;
         }
       });
