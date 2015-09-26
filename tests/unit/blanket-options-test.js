@@ -1,7 +1,6 @@
 /*jshint expr: true */
 var blanketOptions = require('../../lib/blanket-options');
 var expect = require('chai').expect;
-var assertFile = require('../helpers/assert-file');
 var path = require('path');
 var root = process.cwd();
 var tmp = require('tmp-sync');
