@@ -107,7 +107,7 @@ MIT
 
 * 0.6.0
 
-Upgraded to ember-cli 1.13.8
+Upgraded to ember-cli 1.13.8  
 Reduced the project dependencies
 
 * 0.5.3
