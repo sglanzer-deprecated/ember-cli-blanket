@@ -91,15 +91,7 @@ else if (typeof(mocha) === 'object') {
                 originalReporter.apply(this, [runner]);
             };
 
-
-        // From mocha.js HTML reporter
-        blanketReporter.prototype.suiteURL = function(suite){
-          return '?grep=' + encodeURIComponent(suite.fullTitle());
-        };
-
-        blanketReporter.prototype.testURL = function(test){
-          return '?grep=' + encodeURIComponent(test.fullTitle());
-        };
+        blanketReporter.prototype = originalReporter.prototype;
 
         mocha.reporter(blanketReporter);
     })();
