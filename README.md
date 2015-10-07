@@ -106,6 +106,9 @@ MIT
 
 ## Release History
 
+* 0.6.1  
+New TeamCity coverage reporter thanks to @calderas!
+
 * 0.6.0
 
 Upgraded to ember-cli 1.13.8  
