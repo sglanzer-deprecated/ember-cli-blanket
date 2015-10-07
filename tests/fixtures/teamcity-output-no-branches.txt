@@ -1,0 +1,7 @@
+##teamcity[message text='Code Coverage is 79.28%']
+##teamcity[blockOpened name='Code Coverage Summary']
+##teamcity[buildStatisticValue key='CodeCoverageB' value='79.28']
+##teamcity[buildStatisticValue key='CodeCoverageAbsLCovered' value='88']
+##teamcity[buildStatisticValue key='CodeCoverageAbsLTotal' value='111']
+##teamcity[buildStatisticValue key='CodeCoverageL' value='79.28']
+##teamcity[blockClosed name='Code Coverage Summary']
