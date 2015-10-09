@@ -106,6 +106,10 @@ MIT
 
 ## Release History
 
+* 0.6.2  
+
+Bugfix release
+
 * 0.6.1  
 New TeamCity coverage reporter thanks to @calderas!
 
