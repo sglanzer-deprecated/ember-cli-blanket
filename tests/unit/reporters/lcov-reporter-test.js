@@ -9,6 +9,7 @@ describe('LCOV Reporter', function() {
     var expectedOutput = fs.readFileSync(path.join(__dirname, '../../fixtures/lcov-output-no-renamer.dat'), 'utf8');
     var reporter = new LCOVReporter({});
     var output = reporter.transform(fixture);
+    //fs.writeFileSync(path.join(__dirname, '../../fixtures/lcov-output-no-renamer.dat'), output);
     expect(output).to.deep.equal(expectedOutput);
   });
   it('should replace modules names with file names when requested', function () {
@@ -17,12 +18,13 @@ describe('LCOV Reporter', function() {
       cliOptions: {
         lcovOptions: {
           renamer: function (moduleName) {
-            return moduleName.replace(/^todomvc-ember-cli/, 'something-else');
+            return moduleName.replace(/^todos/, 'something-else');
           }
         }
       }
     });
     var output = reporter.transform(fixture);
+    //fs.writeFileSync(path.join(__dirname, '../../fixtures/lcov-output-with-renamer.dat'), output);
     expect(output).to.deep.equal(expectedOutput);
   });
 });

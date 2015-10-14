@@ -9,6 +9,7 @@ describe('Teamcity Reporter', function() {
     var expectedOutput = fs.readFileSync(path.join(__dirname, '../../fixtures/teamcity-output-no-branches.txt'), 'utf8');
     var reporter = new TeamCityReporter({});
     var output = reporter.transform(fixture);
+    //fs.writeFileSync(path.join(__dirname, '../../fixtures/teamcity-output-no-branches.txt'), output);
     expect(output).to.deep.equal(expectedOutput);
   });
 });
