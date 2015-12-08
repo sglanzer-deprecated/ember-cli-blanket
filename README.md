@@ -16,17 +16,19 @@ ember install:addon ember-cli-blanket
 
 ember-cli-blanket can output coverage data to a file.
 
-Three reporters are currently supported:
+Four reporters are currently supported:
 
 - json - provides summary and file level statistics
 - lcov - provides a basic lcov formatted file
 - teamcity - provides a total summary statistics for teamcity
+- html - provides per-file statement and branch statistics in a format similar to blanket's default qunit reporter
 
 Reporters have default output destinations and this can be overwritten in the `blanket-options.js` file, which is auto-installed in your `tests` folder.
 
 ```js
 var options = {
 ...
+    branchTracking: true,
     cliOptions: {
       jsonOptions: {
         outputFile: 'test-output.json' // default is 'coverage.json'
@@ -44,7 +46,9 @@ var options = {
   };
 ```
 
-Only a single reporter is supported currently.
+Enable branch tracking in the html and json reporters by setting `branchTracking` to `true` in the main options within `blanket-options.js` (see above example).
+
+Only one reporter at a time is supported currently.
 
 Append ```?coverage``` to the HTML report URL to enable coverage. This option will enable the creation of the coverage data file when running within a continuous integration context.
 

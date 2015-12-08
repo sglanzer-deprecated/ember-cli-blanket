@@ -9,6 +9,7 @@ describe('JSON Reporter', function() {
     var expectedOutput = fs.readFileSync(path.join(__dirname, '../../fixtures/json-output-no-branches.json'), 'utf8');
     var reporter = new JSONReporter({});
     var output = reporter.transform(fixture);
+    //fs.writeFileSync(path.join(__dirname, '../../fixtures/json-output-no-branches.json'), JSON.stringify(output));
     expect(output).to.deep.equal(JSON.parse(expectedOutput));
   });
 
@@ -16,7 +17,7 @@ describe('JSON Reporter', function() {
     var expectedOutput = fs.readFileSync(path.join(__dirname, '../../fixtures/json-output-with-branches.json'), 'utf8');
     var reporter = new JSONReporter({ branchTracking: true });
     var output = reporter.transform(fixture);
-    fs.writeFileSync('testoutput.json', JSON.stringify(output));
+    //fs.writeFileSync(path.join(__dirname, '../../fixtures/json-output-with-branches.json'), JSON.stringify(output));
     expect(output).to.deep.equal(JSON.parse(expectedOutput));
   });
   it('should include branches and modules when branchCoverage=true and modules=true', function () {
@@ -24,7 +25,7 @@ describe('JSON Reporter', function() {
     var reporter = new JSONReporter({ branchTracking: true, modulePattern: "\/(\\w+)",
  });
     var output = reporter.transform(fixture);
-    fs.writeFileSync('testoutput.json', JSON.stringify(output));
+    //fs.writeFileSync(path.join(__dirname, '../../fixtures/json-output-branches-and-modules.json'), JSON.stringify(output));
     expect(output).to.deep.equal(JSON.parse(expectedOutput));
   });
 });
