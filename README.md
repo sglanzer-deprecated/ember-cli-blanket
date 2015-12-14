@@ -110,6 +110,9 @@ MIT
 
 ## Release History
 
+* 0.7.0
+New HTML coverage reporter thanks to @yagni
+
 * 0.6.2  
 
 Bugfix release
