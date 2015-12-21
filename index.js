@@ -6,6 +6,9 @@ var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 var coverageMiddleware = require('./lib/coverage-middleware');
 var bodyParser = require('body-parser');
+var VersionChecker = require('ember-cli-version-checker');
+var debug = require('debug')('ember-cli-blanket');
+
 
 function logErrors(err, req, res, next) {
   console.error(err.stack);
@@ -14,6 +17,20 @@ function logErrors(err, req, res, next) {
 
 module.exports = {
   name: 'Ember CLI Blanket',
+  checkDeps: function() {
+      var checker = new VersionChecker(this),
+          bowerDep = checker.for('loader.js', 'bower'),
+          npmDep = checker.for('loader.js', 'npm');
+          debug('loader.js version (bower): ', bowerDep.version);
+          debug('loader.js version (npm): ', npmDep.version);
+      return (bowerDep.satisfies('>= 3.6.1') || npmDep.satisfies('>= 4.0.0'));
+  },
+
+  init: function() {
+    if (!this.checkDeps()) {
+        throw new Error('loader.js must be >= 3.6.1 (bower) or >= 4.0.0 (npm)');
+    }
+  },
 
   validEnv: function() {
     return this.app.env !== 'production';
