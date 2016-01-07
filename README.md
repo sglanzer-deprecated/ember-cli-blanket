@@ -110,6 +110,9 @@ MIT
 
 ## Release History
 
+* 0.8.0  
+Support for multi-reporter output thanks to @job13er
+
 * 0.7.0  
 New HTML coverage reporter thanks to @yagni
 
