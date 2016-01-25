@@ -31,12 +31,20 @@ var options = {
     branchTracking: true,
     cliOptions: {
       jsonOptions: {
-        outputFile: 'test-output.json' // default is 'coverage.json'
+        // output file name relative to project's root dir, default is 'coverage.json'
+        outputFile: 'test-output.json'
       },
       lcovOptions: {
         outputFile: 'lcov.dat',
-        //provide a function to rename es6 modules to a file path
+        
+        // automatically skip missing files, relative to project's root dir
+        excludeMissingFiles: true, // default false
+        
+        // provide a function to rename es6 modules to a file path
         renamer: function(moduleName){
+          // return a falsy value to skip given module
+          if (moduleName === 'unwanted') { return; }
+        
           var expression = /^APP_NAME/;
           return moduleName.replace(expression, 'app') + '.js';
         }
