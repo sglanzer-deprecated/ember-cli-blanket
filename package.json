@@ -35,18 +35,18 @@
   "devDependencies": {
     "chai": "^2.2.0",
     "ember-cli": "1.13.8",
-    "ember-cli-version-checker": "1.1.6",
     "glob": "^5.0.3",
     "mocha": "^2.2.1",
     "rewire": "^2.5.1",
     "tmp-sync": "^1.0.1"
   },
   "dependencies": {
-    "body-parser": "^1.12.2",
+      "body-parser": "^1.12.2",
     "broccoli-funnel": "^0.2.2",
     "broccoli-merge-trees": "^0.2.1",
     "core-object": "^1.1.0",
     "debug": "^2.2.0",
+    "ember-cli-version-checker": "1.1.6",
     "fs-extra": "^0.18.0",
     "lodash": "^3.6.0"
   },
