@@ -1,4 +1,4 @@
-/*global QUnit, blanket, mocha, moduleLoaderFinish, $ */
+/*global QUnit, blanket, mocha,  $ */
 
 function sendCoverage() {
 	try {
@@ -19,8 +19,6 @@ function sendCoverage() {
 var origBlanketOnTestsDone = blanket.onTestsDone;
 
 function cliFinish() {
-  // annotate all files that match but were never referenced
-	moduleLoaderFinish();
 	origBlanketOnTestsDone.apply(blanket);
 	sendCoverage();
 }
