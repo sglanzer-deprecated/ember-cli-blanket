@@ -56,8 +56,6 @@ var options = {
 
 Enable branch tracking in the html and json reporters by setting `branchTracking` to `true` in the main options within `blanket-options.js` (see above example).
 
-Only one reporter at a time is supported currently.
-
 Append ```?coverage``` to the HTML report URL to enable coverage. This option will enable the creation of the coverage data file when running within a continuous integration context.
 
 You can add this as part of the ```ember test``` command for a single run:
@@ -117,6 +115,9 @@ As of release 0.2.4 loader exclusions are no longer necessary to fix conflicts w
 MIT
 
 ## Release History
+
+* 0.9.0
+Significant bug fixes to support ember-cli > 1.13.8 thanks to @jschilli
 
 * 0.8.0  
 Support for multi-reporter output thanks to @job13er
