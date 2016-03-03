@@ -92,7 +92,7 @@ this.post(
 );
 ```
 
-For ember-cli-mirage add this to your config.js
+For versions of ember-cli-mirage before 0.2.0-beta.2 add this to your config.js
 
 ```js
 this.pretender.post.call(
