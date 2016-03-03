@@ -110,6 +110,10 @@ A options file is available in tests/blanket-options.js that contains the curren
 
 As of release 0.2.4 loader exclusions are no longer necessary to fix conflicts with addon modules.  Loader exclusions may still be used to remove data coverage for specific files (e.g. config/environment).
 
+## Debugging Common Issues
+
+If you do not see any coverage reports at the bottom of the page, even after clicking the enable coverage checkbox, check your console for errors. If you see something like `TypeError: blanket.instrumentSync is not a function` you need to update your version of blanket. Currently, we are pointing to a fork of blanket, but if you run `ember g ember-cli-blanket` it will update your app to point to the correct blanket version.
+
 ## License
 
 MIT
