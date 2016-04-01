@@ -119,6 +119,22 @@ As of release 0.2.4 loader exclusions are no longer necessary to fix conflicts w
 
 If you do not see any coverage reports at the bottom of the page, even after clicking the enable coverage checkbox, check your console for errors. If you see something like `TypeError: blanket.instrumentSync is not a function` you need to update your version of blanket. Currently, we are pointing to a fork of blanket, but if you run `ember g ember-cli-blanket` it will update your app to point to the correct blanket version.
 
+### No Coverage Reported
+
+1. Determine if coverage is being captured but not sent to ember server.
+    1. Run tests with coverage enabled in browser - is it there?
+        1. If not, check the `antiFilter` in `blanket-options.js` See [Projects with names including template](https://github.com/sglanzer/ember-cli-blanket/issues/109)
+        1. If not, set the option `cliOptions: { debugCLI: true }` and rerun.  This will include additional diagnostics on covered and uncovered modules
+        1. If so, continue to next step
+    1. Check the network calls for `/write-blanket-coverage` - it is there?
+        1. If not, are you using mirage or pretender? other ajax mocking?
+            1. If so, see [Reporters and Testing Mocks](#reporters and testing mocks)
+        1. If so, does it complete with status `200`?
+
+In general, checking the console, increasing debug levels and observing behavior in the browser will help diagnose issues.
+
+Be sure to include versions of Ember, ember-cli and ember-cli-blanket when reporting issues.        
+
 ## License
 
 MIT
