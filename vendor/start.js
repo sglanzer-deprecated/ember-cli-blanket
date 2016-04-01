@@ -15,6 +15,7 @@ function sendCoverage(completion) {
 		debug('data size: ' + data.length);
 		$.ajax({
 			type: 'POST',
+			async: false,
 			url:'/write-blanket-coverage',
 			datatype: 'json',
 			contentType:'application/json; charset=utf-8',

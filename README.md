@@ -128,7 +128,7 @@ If you do not see any coverage reports at the bottom of the page, even after cli
         1. If so, continue to next step
     1. Check the network calls for `/write-blanket-coverage` - it is there?
         1. If not, are you using mirage or pretender? other ajax mocking?
-            1. If so, see [Reporters and Testing Mocks](#reporters and testing mocks)
+            1. If so, see [Reporters and Testing Mocks](#reporters-and-testing-mocks)
         1. If so, does it complete with status `200`?
 
 In general, checking the console, increasing debug levels and observing behavior in the browser will help diagnose issues.
