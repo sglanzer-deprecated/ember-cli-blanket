@@ -1,11 +1,11 @@
-/*global QUnit, blanket, mocha,  $ */
+/*global QUnit, blanket, mocha, moduleLoaderFinish, $ */
 
-var debug = function(msg) {
+var debug = function (msg) {
 	var cliOptions = blanket.options('cliOptions') || {};
 	if (cliOptions.debugCLI) {
 		console.log('[ember-cli-blanket]:' + msg);
 	}
-}
+};
 
 function sendCoverage(completion) {
 	try {

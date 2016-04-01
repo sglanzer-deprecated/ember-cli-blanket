@@ -1,4 +1,4 @@
-/* globals QUnit, blanket, loader */
+/* globals QUnit, blanket, loader, moduleLoaderFinish:true, requirejs */
 
 // This could be a documented capability and move it out of blanket-loader
 // it works, can't put it in test-helper b/c it loads too late
@@ -12,7 +12,7 @@ var debug = function(msg) {
 	if (cliOptions.debugCLI) {
 		console.log('[ember-cli-blanket]:' + msg);
 	}
-}
+};
 
 
 var blanketLoader = function(moduleName, callback) {
