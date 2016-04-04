@@ -1,11 +1,19 @@
-/* globals QUnit, blanket, loader */
+/* globals QUnit, blanket, loader, moduleLoaderFinish:true, requirejs */
 
 // This could be a documented capability and move it out of blanket-loader
 // it works, can't put it in test-helper b/c it loads too late
 var seen = {};
 var inBrowser = typeof window !== 'undefined' && this === window;
-
 blanket.options('enableCoverage',inBrowser && window.location.search.indexOf('coverage') > -1);
+
+
+var debug = function(msg) {
+    var cliOptions = blanket.options('cliOptions') || {};
+	if (cliOptions.debugCLI) {
+		console.log('[ember-cli-blanket]:' + msg);
+	}
+};
+
 
 var blanketLoader = function(moduleName, callback) {
     blanket.requiringFile(moduleName);
@@ -68,6 +76,9 @@ if (blanket.options('enableCoverage')) {
     loader.wrapModules = function(name, callback) {
             if (typeof(seen[name]) === 'undefined') {
                 if (!shouldExclude(name)) {
+                    seen[name] = true;
+                    debug('requiring module: ' + name);
+
                     return blanketLoader(name, callback);
                 }
             }
@@ -81,3 +92,27 @@ if (typeof exports !== 'undefined') {
         shouldExclude: shouldExclude
     };
 }
+
+
+/*
+ * After running all the tests we'll loop over all matching requirejs
+ * entries and annotate them so blanket will indicate their non-coverage
+ */
+moduleLoaderFinish = function() {
+  if (blanket.options('enableCoverage')) {
+    for (var moduleName in requirejs.entries) {
+      if (typeof(seen[moduleName]) === 'undefined') {
+        if (!shouldExclude(moduleName)) {
+          try {
+            debug('requiring unseen module: ' + moduleName);
+            require(moduleName);
+            seen[moduleName] = true;
+
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+    }
+  }
+};

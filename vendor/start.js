@@ -1,14 +1,29 @@
-/*global QUnit, blanket, mocha,  $ */
+/*global QUnit, blanket, mocha, moduleLoaderFinish, $ */
 
-function sendCoverage() {
+var debug = function (msg) {
+	var cliOptions = blanket.options('cliOptions') || {};
+	if (cliOptions.debugCLI) {
+		console.log('[ember-cli-blanket]:' + msg);
+	}
+};
+
+function sendCoverage(completion) {
 	try {
-		var data = JSON.stringify(window._$blanket_coverageData);
+		var rawData = window._$blanket_coverageData;
+
+		var data = JSON.stringify(rawData);
+		debug('data size: ' + data.length);
 		$.ajax({
 			type: 'POST',
+			async: false,
 			url:'/write-blanket-coverage',
 			datatype: 'json',
 			contentType:'application/json; charset=utf-8',
-			data: data
+			data: data,
+			error: function(jqXHR, textStatus, errorThrown ) {
+				console.log('[ember-cli-blanket]:' + textStatus + ': ' + errorThrown + ' while writing blanket coverage');
+			},
+			complete: completion
 		  });
 	} catch(err) {
 		console.error('JSON stringify error:', err);
@@ -19,8 +34,11 @@ function sendCoverage() {
 var origBlanketOnTestsDone = blanket.onTestsDone;
 
 function cliFinish() {
+	moduleLoaderFinish();
 	origBlanketOnTestsDone.apply(blanket);
-	sendCoverage();
+	sendCoverage(function() {
+		debug('done writing coverage');
+	});
 }
 
 blanket.onTestsDone = cliFinish;
