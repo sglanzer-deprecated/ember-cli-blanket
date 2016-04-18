@@ -68,53 +68,54 @@ else if (typeof(mocha) === 'object') {
             throw new Error("mocha library does not exist in global namespace!");
         }
 
+        if (blanket.options('enableCoverage')) {
+            /*
+             * Mocha Events:
+             *
+             *   - `start`  execution started
+             *   - `end`  execution complete
+             *   - `suite`  (suite) test suite execution started
+             *   - `suite end`  (suite) all tests (and sub-suites) have finished
+             *   - `test`  (test) test execution started
+             *   - `test end`  (test) test completed
+             *   - `hook`  (hook) hook execution started
+             *   - `hook end`  (hook) hook complete
+             *   - `pass`  (test) test passed
+             *   - `fail`  (test, err) test failed
+             *
+             */
 
-        /*
-         * Mocha Events:
-         *
-         *   - `start`  execution started
-         *   - `end`  execution complete
-         *   - `suite`  (suite) test suite execution started
-         *   - `suite end`  (suite) all tests (and sub-suites) have finished
-         *   - `test`  (test) test execution started
-         *   - `test end`  (test) test completed
-         *   - `hook`  (hook) hook execution started
-         *   - `hook end`  (hook) hook complete
-         *   - `pass`  (test) test passed
-         *   - `fail`  (test, err) test failed
-         *
-         */
+            var originalReporter = mocha._reporter;
 
-        var originalReporter = mocha._reporter;
+            var blanketReporter = function(runner) {
+                    runner.on('start', function() {
+                        blanket.setupCoverage();
+                    });
 
-        var blanketReporter = function(runner) {
-                runner.on('start', function() {
-                  blanket.setupCoverage();
-                });
+                    runner.on('end', function() {
+                        blanket.onTestsDone();
+                    });
+                    runner.on('suite', function() {
+                        blanket.onModuleStart();
+                    });
 
-                runner.on('end', function() {
-                  blanket.onTestsDone();
-                });
-                runner.on('suite', function() {
-                    blanket.onModuleStart();
-                });
+                    runner.on('test', function() {
+                        blanket.onTestStart();
+                    });
 
-                runner.on('test', function() {
-                    blanket.onTestStart();
-                });
+                    runner.on('test end', function(test) {
+                        blanket.onTestDone(test.parent.tests.length, test.state === 'passed');
+                    });
 
-                runner.on('test end', function(test) {
-                    blanket.onTestDone(test.parent.tests.length, test.state === 'passed');
-                });
+                    //I dont know why these became global leaks
+                    runner.globals(['stats', 'failures', 'runner', '_$blanket']);
 
-                //I dont know why these became global leaks
-                runner.globals(['stats', 'failures', 'runner', '_$blanket']);
+                    originalReporter.apply(this, [runner]);
+                };
 
-                originalReporter.apply(this, [runner]);
-            };
+            blanketReporter.prototype = originalReporter.prototype;
 
-        blanketReporter.prototype = originalReporter.prototype;
-
-        mocha.reporter(blanketReporter);
+            mocha.reporter(blanketReporter);
+        }
     })();
 }
