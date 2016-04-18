@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/ember-cli-blanket.svg)](https://www.npmjs.com/package/ember-cli-blanket)
+
 Ember-cli-blanket
 =========
 
