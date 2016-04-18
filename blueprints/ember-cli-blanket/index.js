@@ -6,7 +6,7 @@ module.exports = {
   normalizeEntityName: function() {},
 
   afterInstall: function() {
-    return this.addBowerPackageToProject('blanket', '#5e94fc30f2e694bb5c3718ddcbf60d467f4b4d26', {saveDev: true})
+    return this.addBowerPackageToProject('blanket', '5e94fc30f2e694bb5c3718ddcbf60d467f4b4d26', {saveDev: true})
 
         // Modify tests/index.html to include the blanket options after the application
         .then(function() {
