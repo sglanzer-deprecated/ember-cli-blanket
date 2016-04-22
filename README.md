@@ -62,13 +62,8 @@ Append ```?coverage=true``` to the HTML report URL to enable coverage. This opti
 
 You can add this as part of the ```ember test``` command for a single run:
 
-*Pre ember-cli 1.13.13*
 ```bash
 ember test --test-page='tests/index.html?coverage=true'
-```
-*Post ember-cli 1.13.13*
-```bash
-ember test --test_page=tests/index.html?coverage=true
 ```
 
 or it can be specified within testem.json for use everytime you test:
