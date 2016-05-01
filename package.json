@@ -33,8 +33,6 @@
   },
   "homepage": "https://github.com/sglanzer/ember-cli-blanket",
   "devDependencies": {
-    "broccoli-funnel": "^1.0.1",
-    "broccoli-merge-trees": "^1.1.1",
     "chai": "^2.2.0",
     "ember-cli": "1.13.8",
     "glob": "^5.0.3",
@@ -44,6 +42,8 @@
   },
   "dependencies": {
     "body-parser": "^1.12.2",
+    "broccoli-funnel": "^1.0.1",
+    "broccoli-merge-trees": "^1.1.1",
     "core-object": "^1.1.0",
     "debug": "^2.2.0",
     "ember-cli-version-checker": "1.1.6",
