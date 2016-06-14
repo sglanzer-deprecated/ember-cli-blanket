@@ -27,6 +27,8 @@ module.exports = {
   },
 
   init: function() {
+    this._super.init && this._super.init.apply(this, arguments);
+    
     if (!this.checkDeps()) {
         throw new Error('loader.js must be >= 3.6.1 (bower) or >= 4.0.0 (npm)');
     }
