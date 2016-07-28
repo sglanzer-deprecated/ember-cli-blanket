@@ -8,7 +8,7 @@ var coverageMiddleware = require('./lib/coverage-middleware');
 var bodyParser = require('body-parser');
 var VersionChecker = require('ember-cli-version-checker');
 var debug = require('debug')('ember-cli-blanket');
-
+var VersionChecker = require('ember-cli-version-checker');
 
 function logErrors(err, req, res, next) {
   console.error(err.stack);
@@ -27,7 +27,7 @@ module.exports = {
   },
 
   init: function() {
-    this._super.init && this._super.init.apply(this, arguments);
+    this._super.init && this._super.init.apply(this, arguments); // jshint ignore:line
     
     if (!this.checkDeps()) {
         throw new Error('loader.js must be >= 3.6.1 (bower) or >= 4.0.0 (npm)');
@@ -74,10 +74,11 @@ module.exports = {
   },
   postprocessTree: function(type, tree) {
     this._requireBuildPackages();
-
+    var checker = new VersionChecker(this);
+    var testLoaderFile = checker.for('ember-cli', 'npm').satisfies('>= 2.7.0') ? 'tests.js' : 'test-loader.js';
     if (type === 'all' && this.app.tests) {
       var treeTestLoader = new Funnel(tree, {
-        files: ['test-loader.js'],
+        files: [testLoaderFile],
         srcDir: 'assets',
         destDir: 'app'
       });
@@ -111,7 +112,7 @@ module.exports = {
 
       var testLoaderTree = this.concatFiles(mergeTrees([treeTestLoader, start]), {
         inputFiles: ['**/*.js'],
-        outputFile: '/assets/test-loader.js'
+        outputFile: '/assets/' + testLoaderFile
       });
 
       return mergeTrees([tree, blanketOptions, blanketLoader, testLoaderTree], {
