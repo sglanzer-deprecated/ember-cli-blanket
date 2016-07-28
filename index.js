@@ -74,10 +74,10 @@ module.exports = {
   },
   postprocessTree: function(type, tree) {
     this._requireBuildPackages();
-
+    
     if (type === 'all' && this.app.tests) {
       var treeTestLoader = new Funnel(tree, {
-        files: ['test-loader.js'],
+        files: ['tests.js'],
         srcDir: 'assets',
         destDir: 'app'
       });
@@ -111,7 +111,7 @@ module.exports = {
 
       var testLoaderTree = this.concatFiles(mergeTrees([treeTestLoader, start]), {
         inputFiles: ['**/*.js'],
-        outputFile: '/assets/test-loader.js'
+        outputFile: '/assets/tests.js'
       });
 
       return mergeTrees([tree, blanketOptions, blanketLoader, testLoaderTree], {
