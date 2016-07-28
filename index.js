@@ -8,7 +8,7 @@ var coverageMiddleware = require('./lib/coverage-middleware');
 var bodyParser = require('body-parser');
 var VersionChecker = require('ember-cli-version-checker');
 var debug = require('debug')('ember-cli-blanket');
-var semver = require('semver')
+var VersionChecker = require('ember-cli-version-checker');
 
 function logErrors(err, req, res, next) {
   console.error(err.stack);
@@ -74,8 +74,8 @@ module.exports = {
   },
   postprocessTree: function(type, tree) {
     this._requireBuildPackages();
-    var testLoaderFile = semver.gte(this.project.cli.analytics.version, '2.7.0') ? 'tests.js' : 'test-loader.js'
-    console.log(testLoaderFile)
+    var checker = new VersionChecker(this);
+    var testLoaderFile = checker.for('ember-cli', 'npm').satisfies('>= 2.7.0') ? 'tests.js' : 'test-loader.js';
     if (type === 'all' && this.app.tests) {
       var treeTestLoader = new Funnel(tree, {
         files: [testLoaderFile],
