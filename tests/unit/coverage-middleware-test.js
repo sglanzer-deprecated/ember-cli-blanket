@@ -100,12 +100,12 @@ describe('coverage middleware', function() {
   });
 
   it('should instantiate all three reporters', function() {
-    var types = _.pluck(instances, 'type');
+    var types = _.map(instances, 'type');
     expect(types).to.be.eql(['TeamCityReporter', 'JsonReporter', 'LcovReporter']);
   });
 
   it('should have called report on all three reporters', function() {
-    var reportedData = _.pluck(instances, 'reported');
+    var reportedData = _.map(instances, 'reported');
     expect(reportedData).to.be.eql(['my-data', 'my-data', 'my-data']);
   });
 });
