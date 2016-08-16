@@ -14,6 +14,10 @@ ember install ember-cli-blanket
 ember install:addon ember-cli-blanket
 ```
 
+## Requirements
+* If using Mirage you need `ember-cli-mirage >= 0.1.13`
+* If using Pretender (even as a dependency of Mirage) you need `pretender >= 0.11.0`
+
 ## Reporters
 
 ember-cli-blanket can output coverage data to a file.
