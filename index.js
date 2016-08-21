@@ -75,10 +75,11 @@ module.exports = {
   postprocessTree: function(type, tree) {
     this._requireBuildPackages();
     var checker = new VersionChecker(this);
-    var testLoaderFile = checker.for('ember-cli', 'npm').satisfies('>= 2.7.0') ? 'tests.js' : 'test-loader.js';
+    var isNpmTestLoader = checker.for('ember-cli', 'npm').satisfies('>= 2.7.0');
+    var testLoaderFile = isNpmTestLoader ? 'tests.js' : 'test-loader.js';
     if (type === 'all' && this.app.tests) {
       var treeTestLoader = new Funnel(tree, {
-        files: [testLoaderFile],
+        files: isNpmTestLoader ? [testLoaderFile, 'tests.map'] : [testLoaderFile], // don't loose the sourcemaps
         srcDir: 'assets',
         destDir: 'app'
       });
