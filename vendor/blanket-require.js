@@ -58,7 +58,7 @@ var shouldExclude = function(moduleName) {
     var exclude = false;
     if (blanket.options('loaderExclusions')) {
         blanket.options('loaderExclusions').forEach(function (loaderExclusion) {
-            if (moduleName.indexOf(loaderExclusion) > -1) {
+            if (moduleName.indexOf(loaderExclusion) > -1 || blanket.utils.matchPatternAttribute(moduleName, loaderExclusion)) {
                 exclude = true;
             }
         });
