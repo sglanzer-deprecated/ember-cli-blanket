@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This project is no longer maintained, [Ember CLI Code Coverage](https://github.com/kategengler/ember-cli-code-coverage) is the recommended replacement.
+
 [![npm](https://img.shields.io/npm/v/ember-cli-blanket.svg)](https://www.npmjs.com/package/ember-cli-blanket)
 
 Ember-cli-blanket
