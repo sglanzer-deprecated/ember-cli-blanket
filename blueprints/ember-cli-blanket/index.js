@@ -16,8 +16,8 @@ module.exports = {
         .then(function() {
             return this.insertIntoFile(
                 'tests/index.html',
-                '    <script src="' + scriptPrefix + 'assets/blanket-options.js"></script>',
-                { after: 'assets/' + this.project.config().modulePrefix + '.js"></script>' + EOL }
+                EOL + '    <script src="' + scriptPrefix + 'assets/blanket-options.js"></script>',
+                { after: 'assets/' + this.project.config().modulePrefix + '.js"></script>' }
             );
         }.bind(this))
 
@@ -25,8 +25,8 @@ module.exports = {
         .then(function() {
             return this.insertIntoFile(
                 'tests/index.html',
-                '    <script src="' + scriptPrefix + 'assets/blanket-loader.js"></script>',
-                { after: 'assets/blanket-options.js"></script>' + EOL }
+                EOL + '    <script src="' + scriptPrefix + 'assets/blanket-loader.js"></script>',
+                { after: 'assets/blanket-options.js"></script>' }
             );
         }.bind(this))
 
@@ -34,8 +34,8 @@ module.exports = {
         .then(function() {
           return this.insertIntoFile(
               'tests/index.html',
-              '    <style>#blanket-main { position: relative; z-index: 99999; }</style>',
-              { after: 'assets/test-support.css">' + EOL }
+              EOL + '    <style>#blanket-main { position: relative; z-index: 99999; }</style>',
+              { after: 'assets/test-support.css">' }
           );
         }.bind(this));
   }
