@@ -48,7 +48,7 @@
     "debug": "^2.2.0",
     "ember-cli-version-checker": "1.1.6",
     "fs-extra": "^0.18.0",
-    "lodash": "^3.6.0"
+    "lodash": "^4.17.19"
   },
   "ember-addon": {
     "after": "ember-cli-qunit",
